@@ -1,0 +1,12 @@
+{% extends "base.html" %}
+{% block title %}
+Lecturer {{ lecturer.first_name }}
+{% endblock %}
+
+{% block content %}
+    <div>ID: {{ lecturer.staff_ID }}</div>
+    <div>Name: {{ lecturer.first_name }} {{ lecturer.last_name }}</div>
+    <div>Email: {{ lecturer.email}} </div>
+    <div>DOB: {{ lecturer.dob }}</div>
+    <div>Courses: {{ lecturer.courses }}</div>
+{% endblock %}

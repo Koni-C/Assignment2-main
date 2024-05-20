@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+Semester List
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <a href="{% url 'semester_create' %}" class="btn btn-primary mb-3">New Semester</a>
+        {% endif %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                {% for semester in object_list %}
+                    <li class="list-group-item">
+                        <a href="{% url 'semester_detail' semester.semester_number %}">Semester {{ semester.semester_number }} {{ semester.year }}</a>
+                        {% if user.is_superuser %}
+                            <div class="btn-group float-right" role="group">
+                                <a href="{% url 'semester_update' semester.pk %}" class="btn btn-sm btn-success">Update</a>
+                                <a href="{% url 'semester_delete' semester.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}

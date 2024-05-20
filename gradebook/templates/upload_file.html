@@ -1,0 +1,19 @@
+{% extends "base.html" %}
+{% block title %}
+Upload and Download Students
+{% endblock %}
+
+{% block content %}
+<h1 style="margin-bottom: 20px;">Upload and Download Students</h1>
+
+<h2>Upload Student(s) <small>Excel Only</small></h2>
+<form method="post" enctype="multipart/form-data">
+    {% csrf_token %}
+    <input type="file" name="file">
+    <button type="submit">Upload</button>
+</form>
+<p></p>
+<h2>Download Students</h2>
+<p><a href="{% url 'download_students' %}">Download Students as Excel</a></p>
+
+{% endblock %}

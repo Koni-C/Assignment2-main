@@ -1,0 +1,22 @@
+{% extends "base.html" %}
+
+{% block title %}
+    Send Email
+{% endblock %}
+
+{% block content %}
+    <h1>Send Email</h1>
+    {% if email_sent %}
+        <div class="alert alert-success" role="alert">
+            Email sent successfully!
+        </div>
+    {% endif %}
+    <form method="post" action="{% url 'send_email_out' %}">
+        {% csrf_token %}
+        <input type="text" name="subject" placeholder="Subject"><br>
+        <textarea name="body" placeholder="Body"></textarea><br>
+        <input type="email" name="from_email" placeholder="From Email"><br>
+        <input type="email" name="to_email" placeholder="To Email"><br>
+        <button>Send!</button>
+    </form>
+{% endblock %}

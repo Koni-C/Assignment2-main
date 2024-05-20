@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+Lecturer List
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <a href="{% url 'lecturer_create' %}" class="btn btn-primary mb-3">New Lecturer</a>
+        {% endif %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col">
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th scope="col">ID</th>
+                        <th scope="col">Name</th>
+                        {% if user.is_superuser %}
+                            <th scope="col">Actions</th>
+                        {% endif %}
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for lecturer in object_list %}
+                        <tr>
+                            <td>{{ lecturer.staff_ID }}</td>
+                            <td>{{ lecturer.first_name }} {{ lecturer.last_name }}</td>
+                            {% if user.is_superuser %}
+                                <td>
+                                    <a href="{% url 'lecturer_detail' lecturer.pk %}" class="btn btn-sm btn-info">Details</a>
+                                    <a href="{% url 'lecturer_update' lecturer.pk %}" class="btn btn-sm btn-success">Update</a>
+                                    <a href="{% url 'lecturer_delete' lecturer.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                                </td>
+                            {% endif %}
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
+{% endblock %}

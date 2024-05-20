@@ -1,0 +1,11 @@
+{% extends "base.html" %}
+{% block title %}
+Class {{ class.class_number }}
+{% endblock %}
+
+{% block content %}
+    <div>ID: {{ class.class_number  }}</div>
+    <div>Name: {{ class.semester}} </div>
+    <div>Email: {{ class.course}} </div>
+    <div>DOB: {{  class.lecturer}}</div>
+{% endblock %}

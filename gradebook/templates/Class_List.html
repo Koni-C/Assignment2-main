@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+{% block title %}
+Class List
+{% endblock %}
+{% block content %}
+<div class="container mt-4">
+    {% if user.is_authenticated %}
+        {% if user.is_superuser %}
+            <a href="{% url 'class_create' %}" class="btn btn-primary mb-3">New Class</a>
+        {% endif %}
+    {% endif %}
+
+    <div class="row">
+        <div class="col">
+            <ul class="list-group">
+                {% for class_obj in object_list %}
+                    <li class="list-group-item">
+                        <a href="{% url 'class_detail' class_obj.id %}">Class {{ class_obj.class_number }} - {{ class_obj.semester }} - {{ class_obj.course }} - {{ class_obj.lecturer }}</a>
+                        {% if user.is_superuser %}
+                            <div class="btn-group float-right" role="group">
+                                <a href="{% url 'class_update' class_obj.pk %}" class="btn btn-sm btn-success">Update</a>
+                                <a href="{% url 'class_delete' class_obj.pk %}" class="btn btn-sm btn-danger">Delete</a>
+                            </div>
+                        {% endif %}
+                    </li>
+                {% endfor %}
+            </ul>
+        </div>
+    </div>
+</div>
+{% endblock %}
